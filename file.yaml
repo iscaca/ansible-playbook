@@ -1,0 +1,12 @@
+---
+  - name: Adding File # Play Name
+    hosts: dev        # Target Hosts
+    tasks:            # Modules to run
+      - name: Creating of File1               # First Task
+        file: path=/tmp/file1 state=touch mode='664'
+
+      - name: Creating of File2               # Second Task
+        file: path=/tmp/file2 state=touch mode='664'
+
+      - name: Creating of File3               # Third Task
+        file: path=/tmp/file3 state=touch mode='444'

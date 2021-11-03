@@ -1,0 +1,15 @@
+---
+  - name: User Adding # Play name
+    hosts: dev        # Target Hosts
+    tasks:            # modules to run
+      - name: Create Bob User  # First Task
+        user:
+          name: bob
+
+      - name: Create Anna User # Second Task
+        user:
+          name: anna
+
+      - name: Create Mary User  #Third Task
+        user:
+          name: mary
