@@ -1,0 +1,10 @@
+all:
+  hosts: # ungrouped hosts
+  children:
+    dev: # name of the custom group
+      hosts:
+        host1: # name of host
+          ansible_host: "10.108.0.3"
+          ansible_port: "55500"    # ssh port
+        host2: # name of host
+          ansible_host: "10.108.0.4"
