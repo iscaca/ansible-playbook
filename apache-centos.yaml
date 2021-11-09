@@ -2,18 +2,41 @@
   - name: Apache installation
     hosts: dev
     tasks:
-      - name: instal apache
+      
+      - name: Install apache for CentOS servers
+        when: ansible_pkg_mgr == "yum" and ansible_distribution == "CentOS"
         yum:
           name: httpd
           state: latest
 
-      - name: start the service of apache
+      - name: Install apache for Ubuntu server
+        when: ansible_distribution == "Ubuntu" and ansible_pkg_mgr == "apt"
+        apt:
+          name: apache2
+          state: latest
+
+      - name: start the service of apache for CentOS Servers
+        when: ansible_service_mgr == "systemd" and ansible_distribution == "CentOS"
         systemd:
           state: started
           name: httpd
 
+      - name: start the service for ubuntu server
+        when: ansible_service_mgr == "systemd" and ansible_distribution == "Ubuntu"
+        systemd:
+          state: started
+          name: apache2
+
       - name: enable httpd
+        when: ansible_service_mgr == "systemd" and ansible_distribution == "CentOS"
         systemd:
           name: httpd
+          enabled: yes
+          masked: no
+
+      - name: enable httpd and ensure it is not masked for Uubuntu server
+        when: ansible_service_mgr == "systemd" and ansible_distribution == "Ubuntu"
+        systemd:
+          name: apache2
           enabled: yes
           masked: no

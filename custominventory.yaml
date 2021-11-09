@@ -8,3 +8,6 @@ all:
           ansible_port: "55500"    # ssh port
         host2: # name of host
           ansible_host: "10.108.0.4"
+        host3: # name of host
+          ansible_host: "10.108.0.5"
+          ansible_port: "55500"
