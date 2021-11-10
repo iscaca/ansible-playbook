@@ -1,0 +1,19 @@
+---
+- name: Ping Servers
+  hosts: prod
+  gather_facts: false
+  vars:
+    a: 12
+    b: 14
+  tasks:
+    - name: Ping 1
+      when: c == 13
+      ping:
+      register: ping1_result
+      ignore_errors: True
+
+    - name: Ping 2
+      ping:
+      when: ping1_result is succeeded
+
+
