@@ -1,0 +1,13 @@
+---
+  - name: Coping a file
+    hosts: host2
+    gather_facts: True
+    tasks:
+    
+      - name: Copy the important.txt file to host2
+        copy:
+          src: important.txt
+          dest: ~/
+          owner: root
+          group: root
+          mode: '0664'

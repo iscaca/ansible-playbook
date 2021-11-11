@@ -1,0 +1,12 @@
+---
+
+- name: Getting a File from a remote server
+  hosts: host2
+  tasks:
+
+    - name: Fetching important.txt file from host2
+      fetch:
+        src: ~/important.txt
+        dest: ~/ansible-playbook/
+        flat: yes
+
